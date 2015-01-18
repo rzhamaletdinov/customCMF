@@ -6,4 +6,3 @@ class mode_404 extends baseMode
         $this->setTitle('Страница не найдена');
     }
 }
-?>

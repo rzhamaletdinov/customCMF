@@ -6,4 +6,3 @@ class mode_about extends baseMode
         $this->setTitle('О компании');
     }
 }
-?>

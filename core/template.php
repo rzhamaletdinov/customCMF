@@ -51,4 +51,3 @@ class View
         return htmlspecialchars($data, ENT_QUOTES);
     }
 }
-?>

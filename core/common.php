@@ -17,4 +17,3 @@ require_once($_SERVER['DOCUMENT_ROOT'].config::MODE_DIR."/index.php");
 require_once($_SERVER['DOCUMENT_ROOT'].config::MODE_DIR."/about.php");
 require_once($_SERVER['DOCUMENT_ROOT'].config::MODE_DIR."/rentform.php");
 require_once($_SERVER['DOCUMENT_ROOT'].config::MODE_DIR."/404.php");
-?>

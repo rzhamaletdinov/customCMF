@@ -42,5 +42,3 @@ function db()
 {
     return db::connect();
 }
-
-?>

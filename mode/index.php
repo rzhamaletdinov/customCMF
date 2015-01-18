@@ -7,4 +7,3 @@ class mode_index extends baseMode
         $this->setContent('Текст на главной');
     }
 }
-?>

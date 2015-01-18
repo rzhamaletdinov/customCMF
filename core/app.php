@@ -95,4 +95,3 @@ abstract class baseMode
         return $this->_content = $content;
     }
 }
-?>

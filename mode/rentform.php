@@ -24,4 +24,3 @@ class mode_rentform extends baseMode
         return array_values($data);
     }
 }
-?>

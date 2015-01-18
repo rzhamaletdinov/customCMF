@@ -64,4 +64,3 @@ class config
                 <br> Your version is '.phpversion());
     }
 }
-?>
