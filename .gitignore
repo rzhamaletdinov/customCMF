@@ -7,5 +7,5 @@ vendor
 #-----local data----
 
 #apache local-config
-arenda.conf
+findwc.conf
 
