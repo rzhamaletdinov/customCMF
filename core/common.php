@@ -13,7 +13,7 @@ require_once(dirname(__FILE__)."/template.php");
  *
  * Add new modes here
  */
-require_once($_SERVER['DOCUMENT_ROOT'].config::MODE_DIR."/index.php");
-require_once($_SERVER['DOCUMENT_ROOT'].config::MODE_DIR."/about.php");
-require_once($_SERVER['DOCUMENT_ROOT'].config::MODE_DIR."/rentform.php");
-require_once($_SERVER['DOCUMENT_ROOT'].config::MODE_DIR."/404.php");
+require_once(__DIR__.'/../'.config::MODE_DIR."/index.php");
+require_once(__DIR__.'/../'.config::MODE_DIR."/about.php");
+require_once(__DIR__.'/../'.config::MODE_DIR."/rentform.php");
+require_once(__DIR__.'/../'.config::MODE_DIR."/404.php");

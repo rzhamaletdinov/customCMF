@@ -7,7 +7,7 @@ class View
 
     public function __construct($path = '')
     {
-        $this->_path = $_SERVER['DOCUMENT_ROOT'] . $path;
+        $this->_path = __DIR__.'/../' . $path;
     }
 
     public function set($name, $value)
