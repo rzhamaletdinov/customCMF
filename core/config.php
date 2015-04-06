@@ -11,11 +11,6 @@ class config
     const MODE_DIR              = '/mode';
 
     /*
-     * PHP settings
-     */
-    const PHP_NEED_VERSION      = '5.4';
-
-    /*
      * MySQL connection settings
      */
     const MYSQL_HOST			= 'localhost';
@@ -55,12 +50,5 @@ class config
     static function isDevEnvironment()
     {
         return self::$DEV_ENVIRONMENT;
-    }
-
-    static function checkRequirements()
-    {
-        if(version_compare(phpversion(), self::PHP_NEED_VERSION, '<'))
-            die('Need PHP version '.self::PHP_NEED_VERSION.' or higher
-                <br> Your version is '.phpversion());
     }
 }

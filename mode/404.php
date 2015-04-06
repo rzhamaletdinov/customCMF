@@ -1,8 +1,9 @@
 <?php
-class mode_404 extends baseMode
+
+class mode_404 extends base_mode
 {
     function process()
     {
-        $this->setTitle('Страница не найдена');
+        $this->set_title('Страница не найдена');
     }
 }

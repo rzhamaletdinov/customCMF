@@ -1,9 +1,10 @@
 <?php
-class mode_index extends baseMode
+
+class mode_index extends base_mode
 {
     function process()
     {
-        $this->setTitle('Главная');
-        $this->setContent('Текст на главной');
+        $this->set_title('Главная');
+        $this->set_content('Текст на главной');
     }
 }

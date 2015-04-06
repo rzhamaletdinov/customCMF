@@ -1,8 +1,9 @@
 <?php
-class mode_about extends baseMode
+
+class mode_about extends base_mode
 {
     function process()
     {
-        $this->setTitle('О компании');
+        $this->set_title('О компании');
     }
 }

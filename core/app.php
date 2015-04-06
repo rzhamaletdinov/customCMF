@@ -3,17 +3,14 @@
 final class Application
 {
     protected static $_instance;
-    protected static $_mode;
 
     const VAR_TITLE     = 'title';
     const VAR_CONTENT   = 'content';
 
     private function __construct()
     {
-        config::checkRequirements();
-        self::_getMode();
-        $className = config::MODE_PREFIX.self::$_mode;
-        $page = new $className(self::$_mode);
+        $class_name = self::_get_class();
+        $page = new $class_name();
         $page->process();
         self::_render($page);
     }
@@ -28,70 +25,60 @@ final class Application
         return self::$_instance;
     }
 
-    private function _getMode()
+    private function _get_class()
     {
         $mode = trim($_SERVER['REQUEST_URI'], "/");
         $mode = current(explode("?", $mode));
         if(!$mode)
             $mode = config::MODE_INDEX_PAGE;
-        if(!class_exists(config::MODE_PREFIX.$mode))
+        if(!class_exists(config::MODE_PREFIX . $mode))
             $mode = config::MODE_404_PAGE;
-        self::$_mode = $mode;
+        return config::MODE_PREFIX . $mode;
     }
 
-    private function _render($data)
+    private function _render($page)
     {
-        $mode       = $data->getMode();
-        $title      = $data->getTitle();
-        $content    = $data->getContent();
-
         $view = new View(config::TEMPLATE_PATH);
-
-        $view->set(self::VAR_TITLE, $title);
-        $view->set(self::VAR_CONTENT, $content);
+        $view->set(self::VAR_TITLE, $page->get_title());
+        $view->set(self::VAR_CONTENT, $page->get_content());
 
         $view->display(config::HEADER_LINK);
-        $view->display($mode);
+        $view->display($page->mode());
         $view->display(config::FOOTER_LINK);
     }
 }
 
 
-abstract class baseMode
+abstract class base_mode
 {
-    private  $_mode;
     private  $_title;
     private  $_content;
 
-    function __construct($mode)
-    {
-        $this->_mode = $mode;
-    }
-
     abstract function process();
 
-    function getMode()
-    {
-        return $this->_mode;
-    }
-
-    function getTitle()
+    function get_title()
     {
         return $this->_title;
     }
 
-    function setTitle($title)
+    function set_title($title)
     {
-        return $this->_title = $title;
+        $this->_title = $title;
     }
 
-    function getContent()
+    function get_content()
     {
         return $this->_content;
     }
 
-    function setContent($content)
+    function set_content($content)
     {
-        return $this->_content = $content;
+        $this->_content = $content;
+    }
+    
+    function mode()
+    {
+    	$args = explode(config::MODE_PREFIX, get_called_class());
+    	return end($args);
     }
 }

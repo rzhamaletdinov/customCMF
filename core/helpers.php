@@ -1,5 +1,5 @@
 <?php
-/*helpers here*/
+
 function dump($arg)
 {
     echo '<pre>';
