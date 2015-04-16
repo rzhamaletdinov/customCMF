@@ -9,7 +9,7 @@ final class Application
 
     private function __construct()
     {
-        $class_name = self::_get_class();
+        $class_name = Handler::get_class();
         $page = new $class_name();
         $page->process();
         self::_render($page);
@@ -23,19 +23,6 @@ final class Application
         if (null === self::$_instance)
             self::$_instance = new self();
         return self::$_instance;
-    }
-
-    private function _get_class()
-    {
-        if(Config::is_cli())
-            return Config::MODE_PREFIX.Config::MODE_INDEX_PAGE;
-        $mode = trim($_SERVER['REQUEST_URI'], "/");
-        $mode = current(explode("?", $mode));
-        if(!$mode)
-            $mode = Config::MODE_INDEX_PAGE;
-        if(!class_exists(Config::MODE_PREFIX . $mode))
-            $mode = Config::MODE_404_PAGE;
-        return Config::MODE_PREFIX . $mode;
     }
 
     private function _render($page)
