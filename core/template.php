@@ -25,7 +25,7 @@ class View
     {
         $this->_template = $this->_path . $template . '.tpl';
         if (!file_exists($this->_template))
-            $this->_template = $this->_path . config::MODE_404_PAGE . '.tpl';
+            $this->_template = $this->_path . Config::MODE_404_PAGE . '.tpl';
         ob_start();
         include($this->_template);
         echo ($strip) ? $this->_strip(ob_get_clean()) : ob_get_clean();

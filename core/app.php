@@ -27,24 +27,26 @@ final class Application
 
     private function _get_class()
     {
+        if(Config::is_cli())
+            return Config::MODE_PREFIX.Config::MODE_INDEX_PAGE;
         $mode = trim($_SERVER['REQUEST_URI'], "/");
         $mode = current(explode("?", $mode));
         if(!$mode)
-            $mode = config::MODE_INDEX_PAGE;
-        if(!class_exists(config::MODE_PREFIX . $mode))
-            $mode = config::MODE_404_PAGE;
-        return config::MODE_PREFIX . $mode;
+            $mode = Config::MODE_INDEX_PAGE;
+        if(!class_exists(Config::MODE_PREFIX . $mode))
+            $mode = Config::MODE_404_PAGE;
+        return Config::MODE_PREFIX . $mode;
     }
 
     private function _render($page)
     {
-        $view = new View(config::TEMPLATE_PATH);
+        $view = new View(Config::TEMPLATE_PATH);
         $view->set(self::VAR_TITLE, $page->get_title());
         $view->set(self::VAR_CONTENT, $page->get_content());
 
-        $view->display(config::HEADER_LINK);
+        $view->display(Config::HEADER_LINK);
         $view->display($page->mode());
-        $view->display(config::FOOTER_LINK);
+        $view->display(Config::FOOTER_LINK);
     }
 }
 
@@ -78,7 +80,7 @@ abstract class base_mode
     
     function mode()
     {
-    	$args = explode(config::MODE_PREFIX, get_called_class());
+    	$args = explode(Config::MODE_PREFIX, get_called_class());
     	return end($args);
     }
 }

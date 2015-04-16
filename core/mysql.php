@@ -12,14 +12,14 @@ final class db
 
     private static function _init()
     {
-        $host   = config::MYSQL_HOST;
-        $dbName = config::MYSQL_DB;
-        $encode = config::MYSQL_ENCODE;
+        $host   = Config::MYSQL_HOST;
+        $dbName = Config::MYSQL_DB;
+        $encode = Config::MYSQL_ENCODE;
 
         return new PDO(
             "mysql:host=$host;dbname=$dbName",
-            config::MYSQL_USER,
-            config::MYSQL_PASS,
+            Config::MYSQL_USER,
+            Config::MYSQL_PASS,
             [PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES '$encode'"]
         );
     }

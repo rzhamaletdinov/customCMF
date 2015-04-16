@@ -1,8 +1,8 @@
 <?php
 
-class config
+class Config
 {
-    /*
+    /**
      * Application settings
      */
     const MODE_INDEX_PAGE       = 'index';
@@ -10,7 +10,7 @@ class config
     const MODE_PREFIX           = 'mode_';
     const MODE_DIR              = '/mode';
 
-    /*
+    /**
      * MySQL connection settings
      */
     const MYSQL_HOST			= 'localhost';
@@ -20,7 +20,7 @@ class config
     const MYSQL_ENCODE			= "UTF8";
 
 
-    /*
+    /**
      * Templates settings
      */
     const HEADER_LINK           = 'component/header';
@@ -50,5 +50,10 @@ class config
     static function isDevEnvironment()
     {
         return self::$DEV_ENVIRONMENT;
+    }
+
+    static function is_cli()
+    {
+        return (php_sapi_name() === 'cli');
     }
 }

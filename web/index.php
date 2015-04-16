@@ -2,6 +2,6 @@
 require_once(__DIR__.'/../core/common.php');
 
 /*!!!Disable on PRODUCTION!!!*/
-config::devEnvironment(true);
+Config::devEnvironment(true);
 
 Application::run();
