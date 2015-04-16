@@ -9,6 +9,10 @@ final class Application
 
     private function __construct()
     {
+    }
+
+    private function _init()
+    {
         $class_name = Handler::get_class();
         $page = new $class_name();
         $page->process();
@@ -21,7 +25,10 @@ final class Application
 
     public static function run() {
         if (null === self::$_instance)
+        {
             self::$_instance = new self();
+            self::$_instance->_init();
+        }
         return self::$_instance;
     }
 
