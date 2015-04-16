@@ -1,6 +1,6 @@
 <?php
 
-class mode_index extends base_mode
+class mode_index extends Controller
 {
     function process()
     {

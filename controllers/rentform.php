@@ -1,6 +1,6 @@
 <?php
 
-class mode_rentform extends base_mode
+class mode_rentform extends Controller
 {
     const Q_INSERT = "INSERT INTO gulden_site.rent_form
                       (contact_name, contact_organization,

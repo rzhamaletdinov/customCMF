@@ -1,6 +1,6 @@
 <?php
 
-class mode_404 extends base_mode
+class mode_404 extends Controller
 {
     function process()
     {

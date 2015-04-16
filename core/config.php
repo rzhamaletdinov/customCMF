@@ -8,7 +8,7 @@ class Config
     const MODE_INDEX_PAGE       = 'index';
     const MODE_404_PAGE         = '404';
     const MODE_PREFIX           = 'mode_';
-    const MODE_DIR              = '/mode';
+    const MODE_DIR              = '/controllers';
 
     /**
      * MySQL connection settings

@@ -2,7 +2,7 @@
 
 class Load
 {
-    static function mode($class_name)
+    static function controller($class_name)
     {
         $args = explode(Config::MODE_PREFIX, $class_name);
         $mode = end($args);
@@ -11,4 +11,4 @@ class Load
             require_once($url);
     }
 }
-spl_autoload_register('Load::mode');
+spl_autoload_register('Load::controller');

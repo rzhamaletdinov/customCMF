@@ -1,6 +1,6 @@
 <?php
 
-class mode_about extends base_mode
+class mode_about extends Controller
 {
     function process()
     {
