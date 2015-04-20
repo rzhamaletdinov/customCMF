@@ -2,7 +2,7 @@
 
 final class Application
 {
-    protected static $_instance;
+    private static $_instance;
 
     const VAR_TITLE     = 'title';
     const VAR_CONTENT   = 'content';
@@ -34,9 +34,10 @@ final class Application
 
     private function _render($page)
     {
-        $twig = View::init(Config::TEMPLATE_PATH);
-        $twig->display(Config::HEADER_LINK.'.tpl');
-        $twig->display($page->mode().'.tpl', ['text' => 'Twig, Twig, Twig!']);
-        $twig->display(Config::FOOTER_LINK.'.tpl');
+        $view = View::init(Config::TEMPLATE_PATH);
+        $view->display(Config::HEADER_LINK.'.twig');
+        $template = $view->loadTemplate('page/index.twig');
+        echo $template->render(['text' => 'Twig, Twig, Twig!']);
+        $view->display(Config::FOOTER_LINK.'.twig');
     }
 }

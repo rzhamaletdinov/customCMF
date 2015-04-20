@@ -9,5 +9,4 @@ require_once(dirname(__FILE__) . "/handler.php");
 require_once(dirname(__FILE__) . "/controller.php");
 require_once(dirname(__FILE__) . "/init.php");
 require_once(dirname(__FILE__) . "/helpers.php");
-require_once(dirname(__FILE__) . "/_template.php");
-//require_once(dirname(__FILE__) . "/template.php");
+require_once(dirname(__FILE__) . "/view.php");
