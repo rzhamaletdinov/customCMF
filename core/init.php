@@ -13,10 +13,10 @@ final class Application
 
     private function _init()
     {
-        $class_name = Handler::get_class();
-        $page = new $class_name();
-        $page->process();
-        self::_render($page);
+        $class_name = Handler::get_handle();
+        $controller = new $class_name();
+        $controller->process();
+        self::_render($controller);
     }
 
     private function __clone()
@@ -34,12 +34,9 @@ final class Application
 
     private function _render($page)
     {
-        $view = new View(Config::TEMPLATE_PATH);
-        $view->set(self::VAR_TITLE, $page->get_title());
-        $view->set(self::VAR_CONTENT, $page->get_content());
-
-        $view->display(Config::HEADER_LINK);
-        $view->display($page->mode());
-        $view->display(Config::FOOTER_LINK);
+        $twig = View::init(Config::TEMPLATE_PATH);
+        $twig->display(Config::HEADER_LINK.'.tpl');
+        $twig->display($page->mode().'.tpl', ['text' => 'Twig, Twig, Twig!']);
+        $twig->display(Config::FOOTER_LINK.'.tpl');
     }
 }

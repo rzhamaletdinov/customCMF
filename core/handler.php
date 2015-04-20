@@ -2,7 +2,7 @@
 
 class Handler
 {
-    static function get_class()
+    static function get_handle()
     {
         if(Config::is_cli())
             return Config::MODE_PREFIX.Config::MODE_INDEX_PAGE;

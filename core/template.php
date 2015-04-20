@@ -1,5 +1,6 @@
 <?php
-class View
+
+/*class View
 {
     private $_path;
     private $_template;
@@ -49,4 +50,4 @@ class View
         }
         return htmlspecialchars($data, ENT_QUOTES);
     }
-}
+}*/

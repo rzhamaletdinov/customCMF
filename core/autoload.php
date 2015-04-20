@@ -10,5 +10,12 @@ class Load
         if (is_readable($url))
             require_once($url);
     }
+
+    static function composer()
+    {
+        require_once (__DIR__.'/../vendor/autoload.php');
+    }
+
 }
+Load::composer();
 spl_autoload_register('Load::controller');
