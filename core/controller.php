@@ -2,10 +2,21 @@
 
 abstract class Controller
 {
-    private  $_title = 'yayayaya';
+    private  $_title = 'MyFuckingTitle';
     private  $_content;
+    private  $_tpl_path;
 
     abstract function process();
+
+    function set_template($path)
+    {
+        $this->_tpl_path = $path;
+    }
+
+    function get_template()
+    {
+        return $this->_tpl_path;
+    }
 
     function get_title()
     {
@@ -33,12 +44,12 @@ abstract class Controller
         return end($args);
     }
 
-    function render($path, $args)
+    public static function aggregate(array $data_args, Controller $controller)
     {
-        $view = new View(Config::TEMPLATE_PATH);
-        $view->set(self::VAR_TITLE, $page->get_title());
-        $view->set(self::VAR_CONTENT, $page->get_content());
-        $view->display($page->mode());
+        foreach ($data_args as $arg)
+            $result['args'][] = $arg;
+        $result['config']['template_path']  = $controller->get_template();
+        $result['config']['title']          = $controller->get_title();
+        return $result;
     }
-
 }

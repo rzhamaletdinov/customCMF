@@ -15,15 +15,16 @@ final class Application
     {
         $class_name = Handler::get_handle();
         $controller = new $class_name();
-        $controller->process();
-        self::_render($controller);
+        $data = $controller->process();
+        self::_render($data, $controller);
     }
 
     private function __clone()
     {
     }
 
-    public static function run() {
+    public static function run()
+    {
         if (null === self::$_instance)
         {
             self::$_instance = new self();
@@ -32,12 +33,11 @@ final class Application
         return self::$_instance;
     }
 
-    private function _render($page)
+    private function _render(array $data_args, Controller $controller)
     {
         $view = View::init(Config::TEMPLATE_PATH);
-        $view->display(Config::HEADER_LINK.'.twig');
-        $template = $view->loadTemplate('page/index.twig');
-        echo $template->render(['text' => 'Twig, Twig, Twig!']);
-        $view->display(Config::FOOTER_LINK.'.twig');
+        $data_view = Controller::aggregate($data_args, $controller);
+        $template = $view->loadTemplate('page/' . $data_view['config']['template_path'] . '.twig');
+        echo $template->render(['text' => 'Twig, Twig, Twig!', 'title' => $data_view['config']['title']]);
     }
 }
