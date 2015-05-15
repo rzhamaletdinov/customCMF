@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Class View
+ * Two step templatizer
+ *
+ * logic_model->view_model
+ */
+
 class View
 {
     private static $_path;
@@ -7,14 +14,15 @@ class View
     private static $_template;
     private static $_theme;
     private static $_loader;
-    private static $_var = [];
     private static $_instance;
+    public  static $vars;
 
     private function __construct($path = '')
     {
         self::$_path        = $path;
         self::$_loader      = new Twig_Loader_Filesystem(__DIR__.'/..'.$path);
         self::$_instance    = new Twig_Environment(self::$_loader);
+        self::$vars         = new View_Variables();
     }
 
     public static function init($path)
@@ -43,14 +51,34 @@ class View
         self::$_loader      = new Twig_Loader_Filesystem(__DIR__.'/..'.$path);
         return self::$_loader;
     }
-//    public function set($name, $value)
-//    {
-//        $this->_var[$name] = $value;
-//    }
-//
-//    public function __get($name)
-//    {
-//        if (isset($this->_var[$name])) return $this->_var[$name];
-//        return '';
-//    }
 }
+
+class View_Variables
+{
+    private static $_vars = null;
+
+    function __construct()
+    {
+        if(null === self::$_vars)
+            self::$_vars = [];
+        return self::$_vars;
+    }
+
+    public static function set($key, $value)
+    {
+        self::$_vars[$key] = $value;
+    }
+
+    public function __get($key)
+    {
+        if (isset(self::$_vars[$key]))
+            return self::$_vars[$key];
+        return null;
+    }
+
+    public function all()
+    {
+        return self::$_vars;
+    }
+}
+

@@ -1,14 +1,9 @@
-{% extends 'theme/default.twig' %}
-
-{% block layout %}
-{% embed 'component/body.twig' %}
+{% extends 'layout/default.twig' %}
 {% block content %}
-
-My awesome content
+    {{ text }}
+    My awesome content
 {% endblock %}
+
 {% block sidebar %}
-
-My sidebar content
-{% endblock %}
-{% endembed %}
+    My sidebar content
 {% endblock %}
